@@ -5,11 +5,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="description" content="Mathioya Technical & Vocational College offers practical, competency-based technical and vocational training in Murang'a County, Kenya.">
   <meta name="theme-color" content="#08152e">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Mathioya Technical &amp; Vocational College">
+  <meta property="og:description" content="Hands-on technical and vocational training for self-reliance in Murang'a County, Kenya.">
+  <meta property="og:image" content="images/logo.png">
+  <meta name="twitter:card" content="summary">
   <title>Mathioya Technical &amp; Vocational College | Hands-on skills for self-reliance</title>
   <link rel="icon" href="images/logo.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollegeOrUniversity",
+      "name": "Mathioya Technical & Vocational College",
+      "description": "A national public technical and vocational training college in Murang'a County, Kenya.",
+      "telephone": "+254791334282",
+      "email": "mathioyatti@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Kamacharia, Mathioya",
+        "addressRegion": "Murang'a County",
+        "addressCountry": "KE"
+      }
+    }
+  </script>
   <style>
     /* ==========================================================================
        1. CSS VARIABLES & DESIGN SYSTEM (Navy, White & Subtle Gold)
@@ -51,17 +69,21 @@
     body {
       background-color: var(--bg);
       color: var(--text-main);
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
       font-size: 15px;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
     h1, h2, h3, h4, .brand-title {
-      font-family: 'Outfit', 'Plus Jakarta Sans', sans-serif;
+      font-family: "Segoe UI", system-ui, sans-serif;
       color: var(--primary-dark);
       letter-spacing: -0.02em;
     }
     a { color: inherit; text-decoration: none; transition: var(--transition); cursor: pointer; }
+    :where(a, button, input, select, textarea):focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 3px;
+    }
     ul { list-style: none; }
     img { max-width: 100%; height: auto; display: block; }
     .container { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
@@ -551,6 +573,7 @@
       box-shadow: var(--shadow-sm);
     }
     .dept-header {
+      width: 100%;
       padding: 18px 24px;
       background: var(--surface);
       cursor: pointer;
@@ -560,6 +583,9 @@
       font-weight: 700;
       font-size: 17px;
       color: var(--primary-dark);
+      border: 0;
+      font-family: inherit;
+      text-align: left;
     }
     .dept-header:hover { background: var(--surface-subtle); }
     .dept-content {
@@ -569,6 +595,8 @@
     }
     .dept-card.active .dept-content { display: block; }
     .dept-card.active .dept-header { background: var(--surface-subtle); color: var(--primary); }
+    .dept-header small { transition: transform 0.25s ease; }
+    .dept-card.active .dept-header small { transform: rotate(180deg); }
     .courses-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -755,6 +783,27 @@
       font-size: 24px;
       cursor: pointer;
     }
+    .mobile-menu-toggle {
+      display: none;
+      border: 1px solid var(--border-color);
+      background: var(--surface);
+      color: var(--primary-dark);
+      border-radius: var(--radius-sm);
+      padding: 8px 11px;
+      font: inherit;
+      font-weight: 700;
+    }
+    .back-to-top {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 100;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: var(--transition);
+    }
+    .back-to-top.visible { opacity: 1; pointer-events: auto; transform: none; }
         @media (max-width: 600px) {
       .brand-name-big { font-size: 26px; }
       .brand-name-sub { font-size: 14px; }
@@ -765,7 +814,19 @@
     /* Mobile Responsive */
     @media (max-width: 900px) {
       .hero-grid, .about-grid, .contact-grid, .principal-card { grid-template-columns: 1fr; }
-      nav.main-nav { display: none; }
+      .mobile-menu-toggle { display: inline-flex; }
+      nav.main-nav {
+        display: none;
+        flex: 1 1 100%;
+        flex-direction: column;
+        align-items: stretch;
+        margin-left: 0;
+      }
+      nav.main-nav.open { display: flex; }
+      nav.main-nav .nav-item,
+      nav.main-nav > .btn { width: 100%; }
+      nav.main-nav > .btn { margin-top: 6px; }
+      .dropdown-menu { position: static; width: 100%; box-shadow: none; }
       .footer-grid { grid-template-columns: 1fr 1fr; }
     }
     .hero-slide.active { opacity: 1 !important; z-index: 0; }
@@ -848,8 +909,8 @@
       }
       nav.main-nav {
         gap: 2px;
-        margin-right: -16px;
-        padding-right: 16px;
+        margin-right: 0;
+        padding-right: 0;
       }
       .nav-link { padding: 8px 10px; font-size: 13px; }
       .dropdown-menu { position: fixed; left: 16px; right: 16px; top: auto; min-width: 0; }
@@ -964,7 +1025,7 @@
     <div class="container">
               <div class="brand-wrap">
         <div class="college-crest">
-          <img src="images/logo.png" alt="Mathioya Technical &amp; Vocational College logo">
+          <img src="images/logo.png" alt="Mathioya Technical &amp; Vocational College logo" width="742" height="869" decoding="async">
         </div>
         <div class="brand-text">
           <h2>
@@ -973,7 +1034,8 @@
           </h2>
         </div>
       </div>
-      <nav class="main-nav">
+      <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="main-navigation">Menu</button>
+      <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
         <div class="nav-item">
           <a href="#about" class="nav-link">Home ▾</a>
           <div class="dropdown-menu">
@@ -1085,10 +1147,10 @@
   </div>
 </div>
 
-      <div class="slider-dots">
-        <button class="active"></button>
-        <button></button>
-        <button></button>
+      <div class="slider-dots" role="tablist" aria-label="Hero slides">
+        <button class="active" type="button" aria-label="Show slide 1" aria-selected="true"></button>
+        <button type="button" aria-label="Show slide 2" aria-selected="false"></button>
+        <button type="button" aria-label="Show slide 3" aria-selected="false"></button>
       </div>
     </section>
 
@@ -1098,7 +1160,7 @@
         <div class="about-grid">
           <div class="about-image-wrapper">
             <!-- PHOTO PLACEHOLDER: Replace src with your main administration or student photo -->
-            <img src="images/BLOCK.jpeg" alt="Students at Mathioya TVC">
+            <img src="images/BLOCK.jpeg" alt="Students at Mathioya TVC" loading="lazy" decoding="async" width="1599" height="899">
             <div class="about-badge-float">National Public TVET College</div>
           </div>
           <div>
@@ -1187,7 +1249,7 @@
         <div class="principal-card">
           <div class="principal-photo-wrap">
             <!-- PHOTO PLACEHOLDER: Replace src with Principal David Chege's portrait -->
-            <img src="images/Principal.jpg" alt="David Chege, Principal Mathioya TVC">
+            <img src="images/Principal.jpg" alt="David Chege, Principal Mathioya TVC" loading="lazy" decoding="async" width="292" height="300">
           </div>
           <div class="principal-body">
             <span class="eyebrow" style="color:var(--gold);">Leadership Message</span>
@@ -1215,11 +1277,11 @@
 
         <!-- 01. ICT -->
         <div class="dept-card active">
-          <div class="dept-header">
+          <button class="dept-header" type="button" aria-expanded="true" aria-controls="dept-ict">
             <span>01 &nbsp; Information &amp; Communication Technology</span>
             <small>▼</small>
-          </div>
-          <div class="dept-content">
+          </button>
+          <div class="dept-content" id="dept-ict">
             <p>Equipped with modern high-speed computer labs, our ICT department develops hands-on computer technicians, network administrators, and software programmers ready to support Kenya's growing digital economy.</p>
             <div class="courses-grid">
               <div class="course-item">
@@ -1246,11 +1308,11 @@
 
         <!-- 02. Mechanical / Automotive -->
         <div class="dept-card">
-          <div class="dept-header">
+          <button class="dept-header" type="button" aria-expanded="false" aria-controls="dept-mechanical">
             <span>02 &nbsp; Mechanical &amp; Automotive Engineering</span>
             <small>▼</small>
-          </div>
-          <div class="dept-content">
+          </button>
+          <div class="dept-content" id="dept-mechanical">
             <p>Comprehensive training in automotive diagnostics, petrol and diesel engine overhaul, transmission systems, automotive electricals, and precision metal fabrication.</p>
             <div class="courses-grid">
               <div class="course-item">
@@ -1272,11 +1334,11 @@
 
         <!-- 03. Building & Civil -->
         <div class="dept-card">
-          <div class="dept-header">
+          <button class="dept-header" type="button" aria-expanded="false" aria-controls="dept-building">
             <span>03 &nbsp; Building &amp; Civil Engineering</span>
             <small>▼</small>
-          </div>
-          <div class="dept-content">
+          </button>
+          <div class="dept-content" id="dept-building">
             <p>Practical masonry, site surveying, plumbing, architectural drafting, and structural concrete engineering training supporting national housing and civil infrastructure.</p>
             <div class="courses-grid">
               <div class="course-item">
@@ -1298,11 +1360,11 @@
 
         <!-- 04. Electrical & Electronics -->
         <div class="dept-card">
-          <div class="dept-header">
+          <button class="dept-header" type="button" aria-expanded="false" aria-controls="dept-electrical">
             <span>04 &nbsp; Electrical &amp; Electronics Engineering</span>
             <small>▼</small>
-          </div>
-          <div class="dept-content">
+          </button>
+          <div class="dept-content" id="dept-electrical">
             <p>Electrical wiring, solar PV installation, electrical machine maintenance, and industrial electronic controls.</p>
             <div style="margin-top:16px;">
               <a href="#contact" class="btn btn-primary enrol-btn" data-dept="Electrical &amp; Electronics Engineering" style="padding:8px 18px; font-size:13px;">Enrol in Electrical →</a>
@@ -1312,11 +1374,11 @@
 
         <!-- 05. Business Studies -->
         <div class="dept-card">
-          <div class="dept-header">
+          <button class="dept-header" type="button" aria-expanded="false" aria-controls="dept-business">
             <span>05 &nbsp; Business Studies &amp; Management</span>
             <small>▼</small>
-          </div>
-          <div class="dept-content">
+          </button>
+          <div class="dept-content" id="dept-business">
             <p>Accounting, supply chain management, human resources, and business administration programmes preparing graduates for enterprise leadership.</p>
             <div style="margin-top:16px;">
               <a href="#contact" class="btn btn-primary enrol-btn" data-dept="Business Studies" style="padding:8px 18px; font-size:13px;">Enrol in Business Studies →</a>
@@ -1326,11 +1388,11 @@
 
         <!-- 06. Hospitality -->
         <div class="dept-card">
-          <div class="dept-header">
+          <button class="dept-header" type="button" aria-expanded="false" aria-controls="dept-hospitality">
             <span>06 &nbsp; Hospitality &amp; Institutional Management</span>
             <small>▼</small>
-          </div>
-          <div class="dept-content">
+          </button>
+          <div class="dept-content" id="dept-hospitality">
             <p>Culinary arts, food and beverage management, bakery, pastry, and hotel service standards.</p>
             <div style="margin-top:16px;">
               <a href="#contact" class="btn btn-primary enrol-btn" data-dept="Hospitality Management" style="padding:8px 18px; font-size:13px;">Enrol in Hospitality →</a>
@@ -1340,11 +1402,11 @@
 
         <!-- 07. Cosmetology -->
         <div class="dept-card">
-          <div class="dept-header">
+          <button class="dept-header" type="button" aria-expanded="false" aria-controls="dept-cosmetology">
             <span>07 &nbsp; Cosmetology &amp; Beauty Therapy</span>
             <small>▼</small>
-          </div>
-          <div class="dept-content">
+          </button>
+          <div class="dept-content" id="dept-cosmetology">
             <p>Professional salon enterprise, hairdressing, aesthetic skincare, and beauty therapy.</p>
             <div style="margin-top:16px;">
               <a href="#contact" class="btn btn-primary enrol-btn" data-dept="Cosmetology &amp; Beauty Therapy" style="padding:8px 18px; font-size:13px;">Enrol in Cosmetology →</a>
@@ -1449,7 +1511,7 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:20px;">
           <!-- Graduation Notice -->
           <div style="background:white; border-radius:var(--radius-md); border:1px solid var(--border-color); padding:24px;">
-                        <img src="images/POSTER.jpeg" alt="First-ever Graduation Ceremony poster, 5 February 2027" class="poster-thumb" onclick="openPoster()">
+                        <img src="images/POSTER.jpeg" alt="First-ever Graduation Ceremony poster, 5 February 2027" class="poster-thumb" loading="lazy" decoding="async" width="991" height="1284" role="button" tabindex="0" aria-label="Open graduation ceremony poster" onclick="openPoster()" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); openPoster(); }">
             <span class="badge" style="background:rgba(20,58,122,0.1); color:var(--primary); font-size:11px; font-weight:800; border-radius:4px; padding:3px 8px;">GRADUATION NOTICE</span>
             <h4 style="margin:10px 0 8px; font-size:18px;">First-ever Graduation Ceremony: 5 February 2027</h4>
             <p style="font-size:14px; color:var(--text-muted); margin-bottom:14px;">All qualified candidates who completed their TVET CDACC assessments are instructed to clear with their respective departments and the Registrar by 15th January 2027.</p>
@@ -1545,7 +1607,7 @@
   </main>
 
     <!-- Poster Lightbox -->
-  <div class="lightbox" id="poster-lightbox" onclick="closePoster()">
+  <div class="lightbox" id="poster-lightbox" role="dialog" aria-modal="true" aria-label="Graduation Ceremony poster" onclick="closePoster()">
     <button class="lightbox-close" aria-label="Close poster" onclick="closePoster()">×</button>
     <img src="images/POSTER.jpeg" alt="Graduation Ceremony poster" onclick="event.stopPropagation()">
   </div>
@@ -1600,6 +1662,7 @@
       </div>
     </div>
   </footer>
+  <a class="btn btn-primary back-to-top" href="#home" aria-label="Back to top">↑ Top</a>
 
   <!-- Single-File JavaScript: Sliders, Accordions, Downloads & Enrolment Routing -->
   <script>
@@ -1642,15 +1705,24 @@
       const dotsContainer = document.querySelector('.slider-dots');
       const prevBtn = document.querySelector('.slider-arrow.prev');
       const nextBtn = document.querySelector('.slider-arrow.next');
+      const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+      const mainNav = document.querySelector('.main-nav');
+      const backToTop = document.querySelector('.back-to-top');
       let currentSlide = 0;
       let slideInterval;
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let sliderPaused = reducedMotion;
 
       function renderDots() {
         if (!dotsContainer) return;
         dotsContainer.innerHTML = '';
         slides.forEach((_, idx) => {
           const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.setAttribute('role', 'tab');
+          dot.setAttribute('aria-label', `Show slide ${idx + 1}`);
           if (idx === currentSlide) dot.classList.add('active');
+          dot.setAttribute('aria-selected', idx === currentSlide ? 'true' : 'false');
           dot.addEventListener('click', () => goToSlide(idx));
           dotsContainer.appendChild(dot);
         });
@@ -1664,9 +1736,10 @@
         const dots = dotsContainer.querySelectorAll('button');
         dots.forEach((dot, idx) => {
           dot.classList.toggle('active', idx === currentSlide);
+          dot.setAttribute('aria-selected', idx === currentSlide ? 'true' : 'false');
         });
         caps.forEach((c, idx) => c.classList.toggle('on', idx === currentSlide));
-        resetAutoSlide();
+        if (!sliderPaused) resetAutoSlide();
       }
 
       function nextSlide() { goToSlide(currentSlide + 1); }
@@ -1674,14 +1747,14 @@
 
       function resetAutoSlide() {
         clearInterval(slideInterval);
-        slideInterval = setInterval(nextSlide, 6000);
+        if (!sliderPaused) slideInterval = setInterval(nextSlide, 6000);
       }
 
       if (slides.length > 0) {
         renderDots();
         resetAutoSlide();
-        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
-        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+        if (prevBtn) prevBtn.addEventListener('click', () => { sliderPaused = true; prevSlide(); });
+        if (nextBtn) nextBtn.addEventListener('click', () => { sliderPaused = true; nextSlide(); });
       }
 
       // 2. Department Accordion Logic
@@ -1690,10 +1763,37 @@
         const header = card.querySelector('.dept-header');
         header.addEventListener('click', () => {
           const isOpen = card.classList.contains('active');
-          deptCards.forEach(c => c.classList.remove('active'));
-          if (!isOpen) card.classList.add('active');
+          deptCards.forEach(c => {
+            c.classList.remove('active');
+            c.querySelector('.dept-header').setAttribute('aria-expanded', 'false');
+          });
+          if (!isOpen) {
+            card.classList.add('active');
+            header.setAttribute('aria-expanded', 'true');
+          }
         });
       });
+
+      if (mobileMenuToggle && mainNav) {
+        mobileMenuToggle.addEventListener('click', () => {
+          const isOpen = mainNav.classList.toggle('open');
+          mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+          mobileMenuToggle.textContent = isOpen ? 'Close' : 'Menu';
+        });
+        mainNav.addEventListener('click', event => {
+          if (event.target.closest('a')) {
+            mainNav.classList.remove('open');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+            mobileMenuToggle.textContent = 'Menu';
+          }
+        });
+      }
+
+      if (backToTop) {
+        window.addEventListener('scroll', () => {
+          backToTop.classList.toggle('visible', window.scrollY > 500);
+        }, { passive: true });
+      }
 
       // 3. Department Enrolment Button Auto-Selection in Inquiry Form
       const enrolBtns = document.querySelectorAll('.enrol-btn');
